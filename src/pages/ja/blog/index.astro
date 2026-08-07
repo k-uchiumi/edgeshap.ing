@@ -4,6 +4,8 @@ const posts = Object.values(
   import.meta.glob('./*.md', { eager: true })
 ) as any[];
 posts.sort((a, b) => (a.frontmatter.date < b.frontmatter.date ? 1 : -1));
+const fmt = (d: any) => new Date(d).toISOString().slice(0, 10);
+const clean = (u: string) => u.replace(/\.html$/, '');
 ---
 <Base
   title="ブログ — EdgeShaping"
@@ -22,8 +24,8 @@ posts.sort((a, b) => (a.frontmatter.date < b.frontmatter.date ? 1 : -1));
   <section class="shallow">
     <div class="wrap" style="max-width: 760px;">
       {posts.map((post) => (
-        <a class="post reveal" href={post.url}>
-          <span class="date">{post.frontmatter.date}</span>
+        <a class="post reveal" href={clean(post.url)}>
+          <span class="date">{fmt(post.frontmatter.date)}</span>
           <h3>{post.frontmatter.title}</h3>
           <p>{post.frontmatter.description}</p>
         </a>

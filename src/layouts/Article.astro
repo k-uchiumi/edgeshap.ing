@@ -4,6 +4,7 @@ const { frontmatter } = Astro.props;
 const lang = (frontmatter.lang ?? 'ja') as 'en' | 'ja';
 const back = lang === 'ja' ? '/ja/blog' : '/blog';
 const backLabel = lang === 'ja' ? '← ブログ一覧へ' : '← Back to blog';
+const dateStr = new Date(frontmatter.date).toISOString().slice(0, 10);
 ---
 <Base
   title={`${frontmatter.title} — EdgeShaping`}
@@ -16,7 +17,7 @@ const backLabel = lang === 'ja' ? '← ブログ一覧へ' : '← Back to blog';
     <div class="wrap article">
       <span class="eyebrow" style="color: var(--ai);">Blog</span>
       <h1 style="color: var(--foam); font-size: clamp(26px, 4vw, 40px); margin-top: 14px;">{frontmatter.title}</h1>
-      <div class="article-meta" style="color: #9fb0c4; margin-bottom: 0;">{frontmatter.date}</div>
+      <div class="article-meta" style="color: #9fb0c4; margin-bottom: 0;">{dateStr}</div>
     </div>
   </section>
   <section class="shallow" style="padding-top: 64px;">
