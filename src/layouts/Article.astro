@@ -5,6 +5,23 @@ const lang = (frontmatter.lang ?? 'ja') as 'en' | 'ja';
 const back = lang === 'ja' ? '/ja/blog' : '/blog';
 const backLabel = lang === 'ja' ? '← ブログ一覧へ' : '← Back to blog';
 const dateStr = new Date(frontmatter.date).toISOString().slice(0, 10);
+const cta = lang === 'ja'
+  ? {
+      title: 'AIボットの観測を、無料で始める',
+      body: 'EdgeShaping Liteは、WordPress.orgから無料でインストールできます。有効化した瞬間から観測が始まります。',
+      main: 'WordPress.orgで入手',
+      mainHref: 'https://ja.wordpress.org/plugins/edgeshaping-lite/',
+      sub: '有償版との比較を見る',
+      subHref: '/ja/editions'
+    }
+  : {
+      title: 'Start observing AI bots — free',
+      body: 'EdgeShaping Lite installs free from WordPress.org. Observation starts the moment you activate it.',
+      main: 'Get it on WordPress.org',
+      mainHref: 'https://wordpress.org/plugins/edgeshaping-lite/',
+      sub: 'Compare with the paid edition',
+      subHref: '/editions'
+    };
 ---
 <Base
   title={`${frontmatter.title} — EdgeShaping`}
@@ -23,7 +40,27 @@ const dateStr = new Date(frontmatter.date).toISOString().slice(0, 10);
   <section class="shallow" style="padding-top: 64px;">
     <div class="wrap article">
       <slot />
-      <p style="margin-top: 56px;"><a class="btn btn-ghost" href={back}>{backLabel}</a></p>
+      <aside class="article-cta">
+        <h2>{cta.title}</h2>
+        <p>{cta.body}</p>
+        <div class="cta-btns">
+          <a class="btn btn-ai" href={cta.mainHref} rel="noopener">{cta.main}</a>
+          <a class="btn btn-ghost" href={cta.subHref}>{cta.sub}</a>
+        </div>
+      </aside>
+      <p style="margin-top: 40px;"><a class="btn btn-ghost" href={back}>{backLabel}</a></p>
     </div>
   </section>
 </Base>
+
+<style>
+  .article-cta {
+    margin-top: 64px;
+    padding: 32px 30px;
+    background: #e9f7f4;
+    border: 1px solid rgba(14, 147, 132, 0.25);
+  }
+  .article-cta h2 { font-size: 22px; margin: 0 0 10px; }
+  .article-cta p { color: var(--ink-soft); margin-bottom: 22px; }
+  .cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+</style>
