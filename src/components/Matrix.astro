@@ -1,61 +1,104 @@
 ---
 interface Props { lang: 'en' | 'ja'; }
 const { lang } = Astro.props;
-const t = lang === 'ja'
-  ? { yHi: 'AI 訪問 多', yLo: 'AI 訪問 少', xLo: '人間 少', xHi: '人間 多',
-      q: ['LATENT GAP', 'ALIGNED', 'INCUBATION', 'STANDARD'],
-      qd: ['AIだけが先に読んでいる', 'AIにも人間にも届いている', 'どちらにもまだ届かない', '人間だけが読んでいる'] }
-  : { yHi: 'AI visits — high', yLo: 'AI visits — low', xLo: 'Humans — low', xHi: 'Humans — high',
-      q: ['LATENT GAP', 'ALIGNED', 'INCUBATION', 'STANDARD'],
-      qd: ['Only AI is reading it', 'Reaching both AI and humans', 'Reaching neither yet', 'Only humans are reading it'] };
+
+type Row = { url: string; ai: number; hu: number };
+type Quad = { key: string; name: string; sub: string; rows: Row[] };
+
+const cols = lang === 'ja' ? { url: 'URL', ai: 'AI', hu: '人間' } : { url: 'URL', ai: 'AI', hu: 'Humans' };
+const pages = (n: number) => (lang === 'ja' ? `${n}ページ` : `${n} pages`);
+
+const quads: Quad[] = lang === 'ja'
+  ? [
+      { key: 'latent', name: 'LATENT GAP', sub: 'AI注目・人間未到達', rows: [
+        { url: '/blog/consent-mode-checklist', ai: 3, hu: 0 },
+        { url: '/docs/api-reference', ai: 2, hu: 0 },
+        { url: '/blog/server-side-tagging', ai: 2, hu: 0 }
+      ] },
+      { key: 'aligned', name: 'ALIGNED', sub: 'AI・人間ともに到達', rows: [
+        { url: '/blog/ga4-migration-guide', ai: 3, hu: 12 },
+        { url: '/features', ai: 2, hu: 8 }
+      ] },
+      { key: 'incubation', name: 'INCUBATION', sub: '育成段階', rows: [
+        { url: '/blog/release-note-v2', ai: 0, hu: 1 }
+      ] },
+      { key: 'standard', name: 'STANDARD', sub: '人間到達・AI未注目', rows: [
+        { url: '/pricing', ai: 0, hu: 21 },
+        { url: '/contact', ai: 0, hu: 14 },
+        { url: '/blog/campaign-report', ai: 1, hu: 9 }
+      ] }
+    ]
+  : [
+      { key: 'latent', name: 'LATENT GAP', sub: 'AI reads it — humans haven\u2019t arrived', rows: [
+        { url: '/blog/consent-mode-checklist', ai: 3, hu: 0 },
+        { url: '/docs/api-reference', ai: 2, hu: 0 },
+        { url: '/blog/server-side-tagging', ai: 2, hu: 0 }
+      ] },
+      { key: 'aligned', name: 'ALIGNED', sub: 'Reaching both audiences', rows: [
+        { url: '/blog/ga4-migration-guide', ai: 3, hu: 12 },
+        { url: '/features', ai: 2, hu: 8 }
+      ] },
+      { key: 'incubation', name: 'INCUBATION', sub: 'Still growing', rows: [
+        { url: '/blog/release-note-v2', ai: 0, hu: 1 }
+      ] },
+      { key: 'standard', name: 'STANDARD', sub: 'Humans read it — AI hasn\u2019t noticed', rows: [
+        { url: '/pricing', ai: 0, hu: 21 },
+        { url: '/contact', ai: 0, hu: 14 },
+        { url: '/blog/campaign-report', ai: 1, hu: 9 }
+      ] }
+    ];
 ---
 <div class="matrix" id="matrix">
-  <div class="axis-y"><span>{t.yHi}</span><span>{t.yLo}</span></div>
-  <div class="quads">
-    {t.q.map((name, i) => (
-      <div class={`quad q${i}`}>
-        <span class="qname">{name}</span>
-        <span class="qdesc">{t.qd[i]}</span>
+  {quads.map((q) => (
+    <div class={`panel ${q.key}`}>
+      <div class="panel-head">
+        <span class="qname">{q.name}</span>
+        <span class="qsub">{q.sub}</span>
+        <span class="qcount">{pages(q.rows.length)}</span>
       </div>
-    ))}
-    <div class="dots" aria-hidden="true"></div>
-  </div>
-  <div class="axis-x"><span>{t.xLo}</span><span>{t.xHi}</span></div>
+      <div class="thead">
+        <span>{cols.url}</span><span>{cols.ai}</span><span>{cols.hu}</span>
+      </div>
+      {q.rows.map((r) => (
+        <div class="row">
+          <span class="u">{r.url}</span>
+          <span class="n ai" data-count={r.ai}>{r.ai}</span>
+          <span class="n hu" data-count={r.hu}>{r.hu}</span>
+        </div>
+      ))}
+    </div>
+  ))}
 </div>
 
 <style>
-  .matrix { display: grid; grid-template-columns: auto 1fr; gap: 12px; max-width: 720px; margin: 0 auto; }
-  .axis-y {
-    display: flex; flex-direction: column; justify-content: space-between;
-    font-family: var(--mono); font-size: 11px; color: var(--ai);
-    writing-mode: vertical-rl; transform: rotate(180deg); padding: 8px 0;
+  .matrix {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+    max-width: 920px; margin: 0 auto;
   }
-  .axis-x {
-    grid-column: 2; display: flex; justify-content: space-between;
-    font-family: var(--mono); font-size: 11px; color: var(--human); padding-top: 10px;
+  .panel { background: #fff; border: 1px solid var(--line-light); padding: 18px 20px 10px; }
+  .panel.latent { background: #e9f7f4; border-color: rgba(14,147,132,0.25); }
+  .panel.standard { background: #fdefee; border-color: rgba(217,79,79,0.22); }
+  .panel.incubation { background: #f4f5f3; }
+  .panel-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .qname { font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; font-weight: 700; color: var(--ink); }
+  .latent .qname { color: var(--ai); }
+  .standard .qname { color: var(--human-dim); }
+  .qsub { font-size: 12px; color: var(--ink-soft); }
+  .qcount { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+  .thead, .row {
+    display: grid; grid-template-columns: 1fr 52px 52px; gap: 8px;
+    padding: 8px 4px; border-bottom: 1px solid var(--line-light);
+    font-family: var(--mono); font-size: 12.5px;
   }
-  .quads {
-    position: relative;
-    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
-    aspect-ratio: 4 / 3;
-    border: 1px solid var(--line-dark);
-  }
-  .quad {
-    border: 1px solid var(--line-dark);
-    padding: 18px;
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .qname { font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; color: var(--foam); }
-  .qdesc { font-size: 12.5px; color: #8fa1b6; }
-  .q0 .qname { color: var(--ai); }
-  .q1 .qname { color: #b9f0e5; }
-  .q3 .qname { color: var(--human); }
-  .dots { position: absolute; inset: 0; pointer-events: none; }
-  .dots :global(.dot) {
-    position: absolute; width: 9px; height: 9px; border-radius: 50%;
-    opacity: 0; transform: scale(0);
-  }
-  @media (max-width: 640px) { .qdesc { display: none; } .quad { padding: 12px; } }
+  .thead { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+  .thead span:nth-child(2), .thead span:nth-child(3), .n { text-align: right; }
+  .row:last-child { border-bottom: 0; }
+  .u { color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .n.ai { color: var(--ai); }
+  .n.hu { color: var(--human-dim); }
+  .row { opacity: 0; transform: translateY(10px); }
+  @media (prefers-reduced-motion: reduce) { .row { opacity: 1; transform: none; } }
+  @media (max-width: 720px) { .matrix { grid-template-columns: 1fr; } }
 </style>
 
 <script>
@@ -64,38 +107,22 @@ const t = lang === 'ja'
   gsap.registerPlugin(ScrollTrigger);
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const host = document.querySelector('#matrix .dots');
-  if (host) {
-    // dots: [xPct, yPct, kind] — kind: ai | human | both | none
-    const DOTS: Array<[number, number, string]> = [
-      [18, 14, 'ai'], [30, 26, 'ai'], [11, 38, 'ai'],
-      [64, 12, 'both'], [78, 22, 'both'], [88, 34, 'both'], [70, 40, 'both'],
-      [20, 72, 'none'], [34, 86, 'none'],
-      [62, 66, 'human'], [80, 78, 'human'], [90, 60, 'human'], [72, 88, 'human']
-    ];
-    const color: Record<string, string> = {
-      ai: 'var(--ai)', human: 'var(--human)',
-      both: '#cdeee6', none: '#4a5a70'
-    };
-    DOTS.forEach(([x, y, kind]) => {
-      const d = document.createElement('span');
-      d.className = 'dot';
-      d.style.left = `calc(${x}% - 4px)`;
-      d.style.top = `calc(${y}% - 4px)`;
-      d.style.background = color[kind];
-      host.appendChild(d);
+  const rows = document.querySelectorAll('#matrix .row');
+  if (rows.length && !reduced) {
+    gsap.to(rows, {
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08,
+      scrollTrigger: { trigger: '#matrix', start: 'top 78%' }
     });
-    if (reduced) {
-      host.querySelectorAll('.dot').forEach((d) => {
-        (d as HTMLElement).style.opacity = '1';
-        (d as HTMLElement).style.transform = 'none';
+    document.querySelectorAll<HTMLElement>('#matrix .n').forEach((el) => {
+      const target = Number(el.dataset.count ?? '0');
+      const obj = { v: 0 };
+      el.textContent = '0';
+      gsap.to(obj, {
+        v: target, duration: 0.9, ease: 'power1.out',
+        snap: { v: 1 },
+        scrollTrigger: { trigger: '#matrix', start: 'top 78%' },
+        onUpdate() { el.textContent = String(Math.round(obj.v)); }
       });
-    } else {
-      gsap.to('#matrix .dot', {
-        opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2.5)',
-        stagger: 0.07,
-        scrollTrigger: { trigger: '#matrix', start: 'top 75%' }
-      });
-    }
+    });
   }
 </script>

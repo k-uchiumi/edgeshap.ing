@@ -36,16 +36,16 @@ const home = lang === 'ja' ? '/ja' : '/';
   .bar { display: flex; align-items: center; justify-content: space-between; }
   .logo {
     font-family: var(--mono); font-weight: 500; font-size: 17px;
-    text-decoration: none; letter-spacing: 0.02em; color: var(--foam);
+    text-decoration: none; letter-spacing: 0.02em; color: var(--ink);
   }
   .logo span { color: var(--ai); }
   nav { display: flex; gap: 26px; align-items: center; }
   nav a {
     font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
-    text-decoration: none; color: #b9c6d6; transition: color 0.2s;
+    text-decoration: none; color: var(--ink-soft); transition: color 0.2s;
   }
   nav a:hover { color: var(--ai); }
-  .lang { border: 1px solid var(--line-dark); padding: 6px 12px; color: var(--foam); }
+  .lang { border: 1px solid var(--line-light); padding: 6px 12px; color: var(--ink); }
   @media (max-width: 720px) {
     nav { gap: 14px; }
     nav a { font-size: 12px; }
