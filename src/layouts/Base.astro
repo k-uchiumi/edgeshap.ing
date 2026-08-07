@@ -24,7 +24,9 @@ const site = 'https://edgeshap.ing';
     <link rel="canonical" href={site + path} />
     {altPath && <link rel="alternate" hreflang={lang === 'en' ? 'ja' : 'en'} href={site + altPath} />}
     {altPath && <link rel="alternate" hreflang={lang} href={site + path} />}
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
