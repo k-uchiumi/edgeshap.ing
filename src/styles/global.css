@@ -130,3 +130,5 @@ footer.site .legal { margin-top: 40px; padding-top: 24px; border-top: 1px solid 
 /* dark band helpers */
 .deep-2 .eyebrow { color: var(--ai-bright) !important; }
 .deep-2 h2 { color: var(--foam-on-dark) !important; }
+
+.article img { border: 1px solid var(--line-light); box-shadow: 0 8px 24px rgba(12,21,36,0.08); margin: 24px 0; }

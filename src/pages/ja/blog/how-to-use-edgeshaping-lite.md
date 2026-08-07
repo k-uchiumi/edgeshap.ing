@@ -7,8 +7,6 @@ lang: ja
 path: /ja/blog/how-to-use-edgeshaping-lite
 ---
 
-<!-- TODO: スクリーンショット画像はShopify CDNから /public/images/ へ移設して差し込む -->
-
 ChatGPT、Claude、Perplexity、Gemini など、AIがWeb上の情報を参照する機会が増えています。
 
 しかし、通常のアクセス解析だけでは、
@@ -115,6 +113,8 @@ WordPress管理画面にログインし、左メニューから「プラグイ�
 
 検索窓で「EdgeShaping Lite」と入力します。
 
+![プラグイン検索画面でEdgeShaping Liteを検索した状態](/images/blog/lite-install.webp)
+
 ### 2. インストールする
 
 検索結果にEdgeShaping Liteが表示されたら、「今すぐインストール」をクリックします。
@@ -140,6 +140,8 @@ WordPress管理画面の左メニューに「EdgeShaping Lite」が追加され�
 Google Search Consoleと未連携の場合、AHQG Matrixは利用できません。まずはDashboard、Access Log、AHTG Matrixから確認すると分かりやすいです。
 
 ## ダッシュボードの見方
+
+![EdgeShaping Liteのダッシュボード。スコアカード4枚とボット別訪問頻度・AIに読まれているページTOP20](/images/blog/lite-dashboard.webp)
 
 ダッシュボードでは、AIボットの訪問状況を概要として確認できます。
 
@@ -181,6 +183,8 @@ AIボットに多く読まれているページのランキングです。
 
 ## アクセスログの見方
 
+![アクセスログ画面。日時・ボット名・URL・User-Agentの一覧とCSVダウンロード](/images/blog/lite-access-log.webp)
+
 アクセスログでは、AIボットの訪問履歴を一覧で確認できます。
 
 一覧には、日時、ボット名、URL、User-Agentが表示されます。
@@ -199,6 +203,8 @@ AIボットに多く読まれているページのランキングです。
 月次レポートや、Google Search Console、GA4などとの突合に使いたい場合は、CSVエクスポートを使うと便利です。
 
 ## AHTG マトリクスの使い方（v1.5新機能）
+
+![AHTGマトリクス。LATENT GAP・ALIGNED・INCUBATION・STANDARDの4象限パネル](/images/blog/lite-ahtg-matrix.webp)
 
 AHTG マトリクスは、AIボットの訪問と、WordPress上で計測した人間のページビューを比較する機能です。
 
@@ -262,6 +268,8 @@ Google Search Consoleとの連携は不要です。検索流入だけでなく�
 
 ## Inferred Pathとは
 
+![Inferred Path。サイトマップに存在しないがAIが訪問したURLの一覧](/images/blog/lite-inferred-path.webp)
+
 AHQG Matrixでは、Inferred Pathも確認できます。
 
 Inferred Pathとは、AIボットが訪問しているものの、サイトマップには含まれていないURLです。
@@ -280,6 +288,8 @@ Inferred Pathを見ることで、AIがどのようなURLを推測・参照し�
 
 ## 完全死角ページとは
 
+![完全死角ページ。サイトマップに存在するがAIにも人間にも届いていないURLの一覧](/images/blog/lite-dark-pages.webp)
+
 完全死角ページは、サイトマップには存在しているものの、AIにも人間にも到達されていないページです。
 
 つまり、サイト上にはあるが、誰にも読まれていない可能性が高いページです。
@@ -291,6 +301,8 @@ Dark Pagesに重要なページが含まれている場合は、内部リンク�
 AI時代のサイト改善では、「読まれているページ」だけでなく、「誰にも到達されていないページ」を把握することも重要です。
 
 ## 設定でできること
+
+![設定画面のGoogle Search Console連携。Client ID/Secret入力とGSC連携ボタン](/images/blog/lite-settings.webp)
 
 Settings画面では、Google Search Console連携を設定できます。
 
