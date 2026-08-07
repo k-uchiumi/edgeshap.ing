@@ -1,0 +1,40 @@
+---
+import Base from '../../../layouts/Base.astro';
+const posts = Object.values(
+  import.meta.glob('./*.md', { eager: true })
+) as any[];
+posts.sort((a, b) => (a.frontmatter.date < b.frontmatter.date ? 1 : -1));
+---
+<Base
+  title="ブログ — EdgeShaping"
+  description="EdgeShapingの使い方、AIボット観測の実測事例、辞書更新のお知らせ。"
+  lang="ja"
+  path="/ja/blog"
+  altPath="/blog"
+>
+  <section class="deep" style="padding-top: 160px;">
+    <div class="wrap">
+      <span class="eyebrow" style="color: var(--ai);">Blog</span>
+      <h2 style="color: var(--foam);">観測の記録。</h2>
+      <p class="lead">使い方、実測事例、辞書更新のお知らせ。</p>
+    </div>
+  </section>
+  <section class="shallow">
+    <div class="wrap" style="max-width: 760px;">
+      {posts.map((post) => (
+        <a class="post reveal" href={post.url}>
+          <span class="date">{post.frontmatter.date}</span>
+          <h3>{post.frontmatter.title}</h3>
+          <p>{post.frontmatter.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+<style>
+  .post { display: block; text-decoration: none; border-bottom: 1px solid var(--line-light); padding: 28px 0; transition: transform 0.2s; }
+  .post:hover { transform: translateX(6px); }
+  .post:hover h3 { color: var(--ai-dim); }
+  .date { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+  .post p { color: var(--ink-soft); font-size: 15px; margin-top: 6px; }
+</style>

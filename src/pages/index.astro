@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroLog from '../components/HeroLog.astro';
+import Matrix from '../components/Matrix.astro';
+---
+<Base
+  title="EdgeShaping — See the AI bots reading your site"
+  description="EdgeShaping records visits from GPTBot, ClaudeBot and other AI crawlers and compares them with human traffic. AI bot observability for WordPress and CDN."
+  lang="en"
+  path="/"
+  altPath="/ja"
+>
+  <HeroLog lang="en" />
+
+  <section class="shallow">
+    <div class="wrap">
+      <span class="eyebrow reveal">What it does</span>
+      <h2 class="reveal">Observation, not guesswork.</h2>
+      <p class="lead reveal">
+        Analytics tools were built to watch humans. EdgeShaping watches the other audience —
+        the AI crawlers and assistants that read your pages to train, retrieve, and answer.
+      </p>
+      <div class="grid-3" style="margin-top: 48px;">
+        <div class="card reveal">
+          <span class="tag">Detect</span>
+          <h3>AI bot access log</h3>
+          <p>
+            A maintained bot dictionary identifies GPTBot, ClaudeBot, PerplexityBot and other AI
+            crawlers, and records every visit — bot name, URL, timestamp, user agent.
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Classify</span>
+          <h3>Purpose, not just presence</h3>
+          <p>
+            Visits are grouped by what the bot came for: training, search &amp; RAG retrieval,
+            or a user-triggered fetch — a request made because a person asked an AI about you.
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Compare</span>
+          <h3>AI × human matrices</h3>
+          <p>
+            The AHTG and AHQG matrices place every page on two axes — AI visits and human
+            reach — so the gap between the two audiences becomes visible at a glance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deep-2">
+    <div class="wrap">
+      <span class="eyebrow reveal" style="color: var(--ai);">The matrix</span>
+      <h2 class="reveal" style="color: var(--foam);">Two audiences. One map.</h2>
+      <p class="lead reveal" style="margin-bottom: 48px;">
+        Pages where only AI shows up are early signals of demand you can't see in analytics yet.
+        Pages where only humans show up may be invisible to AI. The matrix puts both on one map.
+      </p>
+      <div class="reveal"><Matrix lang="en" /></div>
+    </div>
+  </section>
+
+  <section class="shallow-2">
+    <div class="wrap">
+      <span class="eyebrow reveal">Editions</span>
+      <h2 class="reveal">Start free. Go deeper when you need to.</h2>
+      <div class="grid-3" style="margin-top: 40px;">
+        <div class="card reveal">
+          <span class="tag">Free</span>
+          <h3>EdgeShaping Lite</h3>
+          <p>WordPress plugin on WordPress.org. Bot log, dashboard, AHTG matrix.</p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Paid</span>
+          <h3>EdgeShaping</h3>
+          <p>The full WordPress edition. One-time purchase, yearly-version model.</p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Edge</span>
+          <h3>CDN edition</h3>
+          <p>Observation at the CDN layer, before requests ever reach your origin.</p>
+        </div>
+      </div>
+      <div style="margin-top: 40px;" class="reveal">
+        <a class="btn btn-ai" href="/editions">Compare editions</a>
+      </div>
+    </div>
+  </section>
+</Base>

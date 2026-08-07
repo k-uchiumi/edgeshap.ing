@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+const STORE = 'https://mareinterno.com/'; // TODO: replace with the product page once live
+---
+<Base
+  title="Editions — EdgeShaping"
+  description="Compare EdgeShaping Lite (free), EdgeShaping (paid WordPress edition, one-time purchase) and the CDN edition."
+  lang="en"
+  path="/editions"
+  altPath="/ja/editions"
+>
+  <section class="deep" style="padding-top: 160px;">
+    <div class="wrap">
+      <span class="eyebrow" style="color: var(--ai);">Editions</span>
+      <h2 style="color: var(--foam);">Choose your depth of observation.</h2>
+      <p class="lead">Every edition does the same job — observing AI bots. What differs is the layer it watches from, and how far it sees.</p>
+    </div>
+  </section>
+
+  <section class="shallow">
+    <div class="wrap">
+      <div class="grid-3">
+        <div class="card reveal">
+          <span class="tag">Free / WordPress</span>
+          <h3>EdgeShaping Lite</h3>
+          <p style="min-height: 5.5em;">
+            The free edition on WordPress.org: AI bot detection, access log, dashboard and the
+            AHTG matrix. The first step — finding out whether they're coming at all.
+          </p>
+          <p class="price">Free</p>
+          <a class="btn btn-ghost" href="https://wordpress.org/plugins/" rel="noopener">Get it on WordPress.org</a>
+        </div>
+        <div class="card reveal featured">
+          <span class="tag">Paid / WordPress</span>
+          <h3>EdgeShaping</h3>
+          <p style="min-height: 5.5em;">
+            The full edition, including analysis features Lite doesn't have, such as the AHQG
+            matrix. One-time purchase, no subscription. Bot dictionary and bug-fix updates are
+            free until the next yearly version ships.
+          </p>
+          <p class="price">¥10,780 <span>one-time, tax incl.</span></p>
+          <a class="btn btn-ai" href={STORE} rel="noopener">Purchase at mareinterno.com</a>
+        </div>
+        <div class="card reveal">
+          <span class="tag">CDN</span>
+          <h3>CDN edition</h3>
+          <p style="min-height: 5.5em;">
+            Observation that completes at the CDN layer — capturing requests that caching never
+            lets reach your origin. Works beyond WordPress. Available on consultation.
+          </p>
+          <p class="price">On request</p>
+          <a class="btn btn-ghost" href={STORE} rel="noopener">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shallow-2">
+    <div class="wrap" style="max-width: 760px;">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="reveal">Common questions</h2>
+      <div class="faq reveal">
+        <details>
+          <summary>How is Lite different from the paid edition?</summary>
+          <p>Lite is free and distributed on WordPress.org. Some analysis features, such as the AHQG matrix, are available only in the paid EdgeShaping edition.</p>
+        </details>
+        <details>
+          <summary>Is Google Search Console required?</summary>
+          <p>No. The AHTG matrix works entirely on data inside WordPress. GSC integration is an optional extra that enables the AHQG matrix.</p>
+        </details>
+        <details>
+          <summary>How long are updates provided?</summary>
+          <p>Bot dictionary and bug-fix updates for each version are provided until the next yearly version is released. The plugin keeps working after that, but newly appearing AI bots are added only to the new version's dictionary.</p>
+        </details>
+        <details>
+          <summary>Does it work with caching plugins?</summary>
+          <p>Yes — it's compatible with major caching plugins such as WP Rocket. Cache is bypassed only for AI crawler visits, keeping the impact on page speed minimal.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .price { font-family: var(--mono); font-size: 26px; margin: 18px 0; color: var(--ink); }
+  .price span { font-size: 12px; color: var(--ink-soft); }
+  .featured { border-color: var(--ai); border-width: 2px; }
+  .faq details { border-bottom: 1px solid var(--line-light); padding: 18px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; }
+  .faq p { margin-top: 10px; color: var(--ink-soft); }
+</style>

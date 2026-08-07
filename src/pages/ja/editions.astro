@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+const STORE = 'https://mareinterno.com/'; // TODO: 商品ページ確定後に差し替え
+---
+<Base
+  title="エディション — EdgeShaping"
+  description="EdgeShaping Lite（無料）、EdgeShaping（有償版・10,780円税込買い切り）、CDN版の比較。"
+  lang="ja"
+  path="/ja/editions"
+  altPath="/editions"
+>
+  <section class="deep" style="padding-top: 160px;">
+    <div class="wrap">
+      <span class="eyebrow" style="color: var(--ai);">Editions</span>
+      <h2 style="color: var(--foam);">観測の深さで選ぶ。</h2>
+      <p class="lead">どのエディションも役割は同じ — AIボットの観測です。違うのは、どのレイヤーで、どこまで見るか。</p>
+    </div>
+  </section>
+
+  <section class="shallow">
+    <div class="wrap">
+      <div class="grid-3">
+        <div class="card reveal">
+          <span class="tag">無料 / WordPress</span>
+          <h3>EdgeShaping Lite</h3>
+          <p style="min-height: 5.5em;">
+            WordPress.orgで配布中の無料版。AIボットの検出・アクセスログ・ダッシュボード・AHTGマトリクスまで。
+            まず「来ているのか」を確かめる最初の一歩。
+          </p>
+          <p class="price">¥0</p>
+          <a class="btn btn-ghost" href="https://wordpress.org/plugins/" rel="noopener">WordPress.orgで入手</a>
+        </div>
+        <div class="card reveal featured">
+          <span class="tag">有償 / WordPress</span>
+          <h3>EdgeShaping</h3>
+          <p style="min-height: 5.5em;">
+            有償版。AHQGマトリクスなどLiteにない分析機能を含むフル機能。
+            月額・年額費用なし。購入したバージョンは期限なく利用可能。
+            ボット辞書更新・不具合修正は次期年度版の公開まで無償提供。
+          </p>
+          <p class="price">¥10,780 <span>税込・買い切り</span></p>
+          <a class="btn btn-ai" href={STORE} rel="noopener">購入する（mareinterno.com）</a>
+        </div>
+        <div class="card reveal">
+          <span class="tag">CDN</span>
+          <h3>CDN版</h3>
+          <p style="min-height: 5.5em;">
+            CloudflareなどのCDNレイヤーで完結する観測。キャッシュでオリジンに届かないアクセスまで含めて記録します。
+            WordPress以外のサイトにも。
+          </p>
+          <p class="price">個別相談</p>
+          <a class="btn btn-ghost" href={STORE} rel="noopener">相談する</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shallow-2">
+    <div class="wrap" style="max-width: 760px;">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="reveal">よくある質問</h2>
+      <div class="faq reveal">
+        <details>
+          <summary>EdgeShaping Liteとの違いは？</summary>
+          <p>Liteは無料版でWordPress.orgから配布しています。AHQGマトリクスなど一部の分析機能は有償版のEdgeShapingでのみご利用いただけます。</p>
+        </details>
+        <details>
+          <summary>Google Search Consoleとの連携は必須ですか？</summary>
+          <p>いいえ。AHTGマトリクスはWordPress内のデータだけで完結します。GSC連携は任意の追加機能です。</p>
+        </details>
+        <details>
+          <summary>更新はいつまで提供されますか？</summary>
+          <p>各バージョンへのAIボット辞書更新・不具合修正は、次期年度版の公開まで提供します。以降の更新は新バージョンに引き継がれます。更新終了後もプラグイン自体はそのまま動作し続けますが、以降に登場した新しいAIボットは検出対象に追加されません。</p>
+        </details>
+        <details>
+          <summary>キャッシュプラグインと併用できますか？</summary>
+          <p>WP Rocketなど主要なキャッシュプラグインと併用可能です。AIクローラーの訪問時のみキャッシュを迂回し、表示速度への影響を抑えています。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .price { font-family: var(--mono); font-size: 26px; margin: 18px 0; color: var(--ink); }
+  .price span { font-size: 12px; color: var(--ink-soft); }
+  .featured { border-color: var(--ai); border-width: 2px; }
+  .faq details { border-bottom: 1px solid var(--line-light); padding: 18px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; }
+  .faq p { margin-top: 10px; color: var(--ink-soft); }
+</style>

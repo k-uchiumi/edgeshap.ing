@@ -1,0 +1,9 @@
+# Shopify-era URLs -> new structure / sales site
+# NOTE: /products/ と /policies/ の宛先は mareinterno.com の商品・法定ページ確定後に差し替えること
+/blogs/column/how-to-use-edgeshaping-lite  /ja/blog/how-to-use-edgeshaping-lite  301
+/blogs/column                              /ja/blog                              301
+/blogs/*                                   /ja/blog                              301
+/collections/*                             /ja/editions                          301
+/products/*                                https://mareinterno.com/              301
+/pages/contact                             /ja/about                             301
+/policies/*                                https://mareinterno.com/              301

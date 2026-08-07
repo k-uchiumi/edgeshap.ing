@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import Matrix from '../components/Matrix.astro';
+---
+<Base
+  title="How it works — EdgeShaping"
+  description="How EdgeShaping detects AI bots, classifies them by purpose, and compares them with human traffic through the AHTG and AHQG matrices."
+  lang="en"
+  path="/how-it-works"
+  altPath="/ja/how-it-works"
+>
+  <section class="deep" style="padding-top: 160px;">
+    <div class="wrap">
+      <span class="eyebrow" style="color: var(--ai);">How it works</span>
+      <h2 style="color: var(--foam);">Detect. Classify. Compare.</h2>
+      <p class="lead">
+        EdgeShaping answers one simple question:<br />
+        <strong style="color: var(--foam);">Which AI bot is reading which page, when — and why?</strong>
+      </p>
+    </div>
+  </section>
+
+  <section class="shallow">
+    <div class="wrap">
+      <div class="grid-3">
+        <div class="card reveal">
+          <span class="tag">Step — Detect</span>
+          <h3>Dictionary-based detection</h3>
+          <p>
+            A continuously updated crawler dictionary identifies traffic from the ChatGPT, Claude,
+            Perplexity and Gemini families and beyond, logging bot name, URL, timestamp and user
+            agent. The dictionary grows with every update.
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Step — Classify</span>
+          <h3>Grouped by purpose</h3>
+          <p>
+            Not every "AI bot" means the same thing. Training crawls feed models. Search &amp; RAG
+            fetches back answers. User-triggered fetches happen because a person just asked an AI
+            about you. EdgeShaping reports each visit by what it was for.
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Step — Compare</span>
+          <h3>Side by side with humans</h3>
+          <p>
+            AI visits are matched against human page views (AHTG) or Google Search clicks (AHQG),
+            turning the gap between your two audiences into a four-quadrant map, per page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deep-2">
+    <div class="wrap">
+      <span class="eyebrow reveal" style="color: var(--ai);">AHTG / AHQG Matrix</span>
+      <h2 class="reveal" style="color: var(--foam);">Four quadrants to read.</h2>
+      <p class="lead reveal" style="margin-bottom: 48px;">
+        The AHTG matrix plots AI visits against human page views; the AHQG matrix plots them
+        against Google Search clicks. Different human-side data, same way of reading the map.
+      </p>
+      <div class="reveal"><Matrix lang="en" /></div>
+    </div>
+  </section>
+
+  <section class="shallow-2">
+    <div class="wrap">
+      <span class="eyebrow reveal">Beyond the matrix</span>
+      <h2 class="reveal">Two observations past the quadrants.</h2>
+      <div class="grid-2" style="margin-top: 40px;">
+        <div class="card reveal">
+          <span class="tag">Inferred Path</span>
+          <h3>URLs the AI assumed would exist</h3>
+          <p>
+            URLs that AI bots request even though they're not in your sitemap. Some are stale
+            links. Others are paths an AI invented because it expected your site to have that
+            page — which makes them a signal of demand you haven't written yet.
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Dark Pages</span>
+          <h3>Pages nobody reaches</h3>
+          <p>
+            Pages that exist in your sitemap but are reached by neither AI nor humans. For
+            important pages, that's a linking problem. For the rest, it's a merge, delete or
+            noindex decision waiting to be made.
+          </p>
+        </div>
+      </div>
+      <div style="margin-top: 48px;" class="reveal">
+        <a class="btn btn-ai" href="/editions">Compare editions</a>
+      </div>
+    </div>
+  </section>
+</Base>

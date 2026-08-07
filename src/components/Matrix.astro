@@ -1,0 +1,101 @@
+---
+interface Props { lang: 'en' | 'ja'; }
+const { lang } = Astro.props;
+const t = lang === 'ja'
+  ? { yHi: 'AI 訪問 多', yLo: 'AI 訪問 少', xLo: '人間 少', xHi: '人間 多',
+      q: ['LATENT GAP', 'ALIGNED', 'INCUBATION', 'STANDARD'],
+      qd: ['AIだけが先に読んでいる', 'AIにも人間にも届いている', 'どちらにもまだ届かない', '人間だけが読んでいる'] }
+  : { yHi: 'AI visits — high', yLo: 'AI visits — low', xLo: 'Humans — low', xHi: 'Humans — high',
+      q: ['LATENT GAP', 'ALIGNED', 'INCUBATION', 'STANDARD'],
+      qd: ['Only AI is reading it', 'Reaching both AI and humans', 'Reaching neither yet', 'Only humans are reading it'] };
+---
+<div class="matrix" id="matrix">
+  <div class="axis-y"><span>{t.yHi}</span><span>{t.yLo}</span></div>
+  <div class="quads">
+    {t.q.map((name, i) => (
+      <div class={`quad q${i}`}>
+        <span class="qname">{name}</span>
+        <span class="qdesc">{t.qd[i]}</span>
+      </div>
+    ))}
+    <div class="dots" aria-hidden="true"></div>
+  </div>
+  <div class="axis-x"><span>{t.xLo}</span><span>{t.xHi}</span></div>
+</div>
+
+<style>
+  .matrix { display: grid; grid-template-columns: auto 1fr; gap: 12px; max-width: 720px; margin: 0 auto; }
+  .axis-y {
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; color: var(--ai);
+    writing-mode: vertical-rl; transform: rotate(180deg); padding: 8px 0;
+  }
+  .axis-x {
+    grid-column: 2; display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; color: var(--human); padding-top: 10px;
+  }
+  .quads {
+    position: relative;
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--line-dark);
+  }
+  .quad {
+    border: 1px solid var(--line-dark);
+    padding: 18px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .qname { font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; color: var(--foam); }
+  .qdesc { font-size: 12.5px; color: #8fa1b6; }
+  .q0 .qname { color: var(--ai); }
+  .q1 .qname { color: #b9f0e5; }
+  .q3 .qname { color: var(--human); }
+  .dots { position: absolute; inset: 0; pointer-events: none; }
+  .dots :global(.dot) {
+    position: absolute; width: 9px; height: 9px; border-radius: 50%;
+    opacity: 0; transform: scale(0);
+  }
+  @media (max-width: 640px) { .qdesc { display: none; } .quad { padding: 12px; } }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const host = document.querySelector('#matrix .dots');
+  if (host) {
+    // dots: [xPct, yPct, kind] — kind: ai | human | both | none
+    const DOTS: Array<[number, number, string]> = [
+      [18, 14, 'ai'], [30, 26, 'ai'], [11, 38, 'ai'],
+      [64, 12, 'both'], [78, 22, 'both'], [88, 34, 'both'], [70, 40, 'both'],
+      [20, 72, 'none'], [34, 86, 'none'],
+      [62, 66, 'human'], [80, 78, 'human'], [90, 60, 'human'], [72, 88, 'human']
+    ];
+    const color: Record<string, string> = {
+      ai: 'var(--ai)', human: 'var(--human)',
+      both: '#cdeee6', none: '#4a5a70'
+    };
+    DOTS.forEach(([x, y, kind]) => {
+      const d = document.createElement('span');
+      d.className = 'dot';
+      d.style.left = `calc(${x}% - 4px)`;
+      d.style.top = `calc(${y}% - 4px)`;
+      d.style.background = color[kind];
+      host.appendChild(d);
+    });
+    if (reduced) {
+      host.querySelectorAll('.dot').forEach((d) => {
+        (d as HTMLElement).style.opacity = '1';
+        (d as HTMLElement).style.transform = 'none';
+      });
+    } else {
+      gsap.to('#matrix .dot', {
+        opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2.5)',
+        stagger: 0.07,
+        scrollTrigger: { trigger: '#matrix', start: 'top 75%' }
+      });
+    }
+  }
+</script>

@@ -1,0 +1,28 @@
+---
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+const lang = (frontmatter.lang ?? 'ja') as 'en' | 'ja';
+const back = lang === 'ja' ? '/ja/blog' : '/blog';
+const backLabel = lang === 'ja' ? '← ブログ一覧へ' : '← Back to blog';
+---
+<Base
+  title={`${frontmatter.title} — EdgeShaping`}
+  description={frontmatter.description}
+  lang={lang}
+  path={frontmatter.path}
+  altPath={frontmatter.altPath}
+>
+  <section class="deep" style="padding: 150px 0 70px;">
+    <div class="wrap article">
+      <span class="eyebrow" style="color: var(--ai);">Blog</span>
+      <h1 style="color: var(--foam); font-size: clamp(26px, 4vw, 40px); margin-top: 14px;">{frontmatter.title}</h1>
+      <div class="article-meta" style="color: #9fb0c4; margin-bottom: 0;">{frontmatter.date}</div>
+    </div>
+  </section>
+  <section class="shallow" style="padding-top: 64px;">
+    <div class="wrap article">
+      <slot />
+      <p style="margin-top: 56px;"><a class="btn btn-ghost" href={back}>{backLabel}</a></p>
+    </div>
+  </section>
+</Base>

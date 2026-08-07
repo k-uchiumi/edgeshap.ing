@@ -1,0 +1,59 @@
+---
+interface Props { lang: 'en' | 'ja'; }
+const { lang } = Astro.props;
+const p = lang === 'ja' ? '/ja' : '';
+const t = lang === 'ja'
+  ? {
+      tagline: 'AIボット観測フレームワーク',
+      product: 'プロダクト', how: '仕組み', editions: 'エディション', blog: 'ブログ',
+      company: '運営', about: '会社情報', corp: 'mare interno合同会社',
+      store: 'ご購入', storeNote: '販売・サポート窓口',
+      patent: '特許出願中（特願2026-101978）'
+    }
+  : {
+      tagline: 'AI bot observability framework',
+      product: 'Product', how: 'How it works', editions: 'Editions', blog: 'Blog',
+      company: 'Company', about: 'About', corp: 'mare interno LLC',
+      store: 'Purchase', storeNote: 'Sales & support',
+      patent: 'Patent pending (JP 2026-101978)'
+    };
+---
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="fl">Edge<span>Shaping</span></div>
+        <p>{t.tagline}</p>
+      </div>
+      <div>
+        <h4>{t.product}</h4>
+        <a href={`${p}/how-it-works`}>{t.how}</a><br />
+        <a href={`${p}/editions`}>{t.editions}</a><br />
+        <a href={`${p}/blog`}>{t.blog}</a>
+      </div>
+      <div>
+        <h4>{t.company}</h4>
+        <a href={`${p}/about`}>{t.about}</a><br />
+        <a href="https://mareinterno.com/" rel="noopener">mareinterno.com</a>
+      </div>
+      <div>
+        <h4>{t.store}</h4>
+        <a href="https://mareinterno.com/" rel="noopener">{t.storeNote} →</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 {t.corp}</span>
+      <span>{t.patent}</span>
+    </div>
+  </div>
+</footer>
+<style>
+  .fl { font-family: var(--mono); font-size: 17px; color: var(--foam); margin-bottom: 8px; }
+  .fl span { color: var(--ai); }
+  h4 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #6d8098; margin-bottom: 12px;
+  }
+  .cols > div { min-width: 150px; }
+  .cols a { line-height: 2; }
+</style>

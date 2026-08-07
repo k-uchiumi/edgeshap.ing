@@ -1,0 +1,53 @@
+---
+interface Props { lang: 'en' | 'ja'; altPath?: string; path: string; }
+const { lang, altPath } = Astro.props;
+const p = lang === 'ja' ? '/ja' : '';
+const nav = lang === 'ja'
+  ? [
+      { href: `${p}/how-it-works`, label: '仕組み' },
+      { href: `${p}/editions`, label: 'エディション' },
+      { href: `${p}/blog`, label: 'ブログ' },
+      { href: `${p}/about`, label: '会社情報' }
+    ]
+  : [
+      { href: `/how-it-works`, label: 'How it works' },
+      { href: `/editions`, label: 'Editions' },
+      { href: `/blog`, label: 'Blog' },
+      { href: `/about`, label: 'About' }
+    ];
+const switchHref = altPath ?? (lang === 'ja' ? '/' : '/ja');
+const switchLabel = lang === 'ja' ? 'EN' : '日本語';
+const home = lang === 'ja' ? '/ja' : '/';
+---
+<header class="site-head">
+  <div class="wrap bar">
+    <a class="logo" href={home}>Edge<span>Shaping</span></a>
+    <nav>
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="lang" href={switchHref} rel="alternate">{switchLabel}</a>
+    </nav>
+  </div>
+</header>
+<style>
+  .site-head {
+    position: absolute; inset: 0 0 auto 0; z-index: 10;
+    padding: 22px 0;
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: var(--mono); font-weight: 500; font-size: 17px;
+    text-decoration: none; letter-spacing: 0.02em; color: var(--foam);
+  }
+  .logo span { color: var(--ai); }
+  nav { display: flex; gap: 26px; align-items: center; }
+  nav a {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
+    text-decoration: none; color: #b9c6d6; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--ai); }
+  .lang { border: 1px solid var(--line-dark); padding: 6px 12px; color: var(--foam); }
+  @media (max-width: 720px) {
+    nav { gap: 14px; }
+    nav a { font-size: 12px; }
+  }
+</style>

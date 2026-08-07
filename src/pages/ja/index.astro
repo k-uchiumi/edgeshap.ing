@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import HeroLog from '../../components/HeroLog.astro';
+import Matrix from '../../components/Matrix.astro';
+---
+<Base
+  title="EdgeShaping — GA4では見えないAIボットを可視化"
+  description="GPTBot、ClaudeBot、ApplebotなどのAIアクセスを可視化するツール「EdgeShaping」。GA4では捕捉できないAIトラフィックを、誰でも簡単に観測できます。"
+  lang="ja"
+  path="/ja"
+  altPath="/"
+>
+  <HeroLog lang="ja" />
+
+  <section class="shallow">
+    <div class="wrap">
+      <span class="eyebrow reveal">What it does</span>
+      <h2 class="reveal">推測ではなく、観測を。</h2>
+      <p class="lead reveal">
+        アクセス解析ツールは人間を見るために作られています。EdgeShapingが見るのはもう一方の読者 —
+        学習・検索・回答のためにページを読みに来るAIボットです。
+      </p>
+      <div class="grid-3" style="margin-top: 48px;">
+        <div class="card reveal">
+          <span class="tag">Detect</span>
+          <h3>AIボット観測ログ</h3>
+          <p>
+            GPTBot、ClaudeBot、PerplexityBotなど主要なAIクローラーをボット辞書で自動識別し、
+            ボット名・URL・日時・User-Agentを訪問履歴として記録します。
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Classify</span>
+          <h3>「来たか」ではなく「何しに来たか」</h3>
+          <p>
+            訪問を用途別に分類します。学習、検索・RAG、そしてユーザートリガー —
+            誰かがAIにあなたのサイトのことを尋ねたから発生したアクセスです。
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Compare</span>
+          <h3>AI×人間のマトリクス</h3>
+          <p>
+            AHTG・AHQGマトリクスが、全ページを「AIの訪問」と「人間の到達」の2軸に配置。
+            2つの読者のズレがひと目で見えるようになります。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deep-2">
+    <div class="wrap">
+      <span class="eyebrow reveal" style="color: var(--ai);">The matrix</span>
+      <h2 class="reveal" style="color: var(--foam);">2つの読者を、1枚の地図に。</h2>
+      <p class="lead reveal" style="margin-bottom: 48px;">
+        AIだけが来ているページは、アクセス解析にまだ表れていない需要の先行シグナル。
+        人間だけが来ているページは、AIから見えていない可能性があります。マトリクスは両方を1枚の地図に載せます。
+      </p>
+      <div class="reveal"><Matrix lang="ja" /></div>
+    </div>
+  </section>
+
+  <section class="shallow-2">
+    <div class="wrap">
+      <span class="eyebrow reveal">Editions</span>
+      <h2 class="reveal">無料で始めて、必要になったら深く。</h2>
+      <div class="grid-3" style="margin-top: 40px;">
+        <div class="card reveal">
+          <span class="tag">無料</span>
+          <h3>EdgeShaping Lite</h3>
+          <p>WordPress.orgで配布中の無料プラグイン。ボットログ、ダッシュボード、AHTGマトリクス。</p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">有償</span>
+          <h3>EdgeShaping</h3>
+          <p>WordPress有償版。10,780円（税込）買い切り・年度版モデル。</p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Edge</span>
+          <h3>CDN版</h3>
+          <p>リクエストがオリジンに届く前、CDNレイヤーで完結する観測。個別相談で提供。</p>
+        </div>
+      </div>
+      <div style="margin-top: 40px;" class="reveal">
+        <a class="btn btn-ai" href="/ja/editions">エディションを比較する</a>
+      </div>
+    </div>
+  </section>
+</Base>

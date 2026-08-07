@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import Matrix from '../../components/Matrix.astro';
+---
+<Base
+  title="仕組み — EdgeShaping"
+  description="EdgeShapingがAIボットを検出し、用途別に分類し、AHTG／AHQGマトリクスで人間のアクセスと比較するまでの流れを解説します。"
+  lang="ja"
+  path="/ja/how-it-works"
+  altPath="/how-it-works"
+>
+  <section class="deep" style="padding-top: 160px;">
+    <div class="wrap">
+      <span class="eyebrow" style="color: var(--ai);">How it works</span>
+      <h2 style="color: var(--foam);">検出 → 分類 → 比較。</h2>
+      <p class="lead">
+        EdgeShapingが答える問いはシンプルです。<br />
+        <strong style="color: var(--foam);">どのAIボットが、サイトのどのページを、いつ、何のために読んでいるのか。</strong>
+      </p>
+    </div>
+  </section>
+
+  <section class="shallow">
+    <div class="wrap">
+      <div class="grid-3">
+        <div class="card reveal">
+          <span class="tag">Step — Detect</span>
+          <h3>ボット辞書で検出</h3>
+          <p>
+            継続更新されるAIクローラー辞書を使い、ChatGPT系・Claude系・Perplexity系・Gemini系などの
+            アクセスを検出。ボット名・URL・訪問日時・User-Agentを記録します。辞書は更新のたびに育ちます。
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Step — Classify</span>
+          <h3>用途で分類</h3>
+          <p>
+            同じ「AIボット」でも意味が違います。学習（モデルに取り込む）、検索・RAG（回答の裏付けに引く）、
+            ユーザートリガー（人がAIに質問して発生する即時フェッチ）。EdgeShapingは訪問を用途別に出力します。
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">Step — Compare</span>
+          <h3>人間と並べて比較</h3>
+          <p>
+            AIボットの訪問と人間のページビュー（AHTG）、あるいはGoogle検索クリック（AHQG）を突き合わせ、
+            ページごとの「読者のズレ」を4象限で可視化します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deep-2">
+    <div class="wrap">
+      <span class="eyebrow reveal" style="color: var(--ai);">AHTG / AHQG Matrix</span>
+      <h2 class="reveal" style="color: var(--foam);">4象限で読む。</h2>
+      <p class="lead reveal" style="margin-bottom: 48px;">
+        AHTGマトリクスは「AIボット訪問 × 人間PV」、AHQGマトリクスは「AIボット訪問 × Google検索クリック」。
+        比較する人間側のデータが違うだけで、読み方は同じです。
+      </p>
+      <div class="reveal"><Matrix lang="ja" /></div>
+    </div>
+  </section>
+
+  <section class="shallow-2">
+    <div class="wrap">
+      <span class="eyebrow reveal">Beyond the matrix</span>
+      <h2 class="reveal">マトリクスの先にある2つの観測。</h2>
+      <div class="grid-2" style="margin-top: 40px;">
+        <div class="card reveal">
+          <span class="tag">Inferred Path</span>
+          <h3>AIが「あるはず」と推測したURL</h3>
+          <p>
+            サイトマップに存在しないのにAIボットが訪問しているURL。過去のURLかもしれませんし、
+            「このサイトならこの記事があるだろう」とAIが思い込んで作ったパスかもしれません。
+            後者なら、それはまだ書かれていない需要の発見です。
+          </p>
+        </div>
+        <div class="card reveal">
+          <span class="tag">完全死角ページ</span>
+          <h3>誰にも到達されていないページ</h3>
+          <p>
+            サイトマップには存在するのに、AIにも人間にも読まれていないページ。
+            重要ページなら導線の見直し、不要ページなら統合・削除・noindexの判断材料になります。
+          </p>
+        </div>
+      </div>
+      <div style="margin-top: 48px;" class="reveal">
+        <a class="btn btn-ai" href="/ja/blog/how-to-use-edgeshaping-lite">使い方の詳細を読む</a>
+        <a class="btn btn-ghost" href="/ja/editions" style="margin-left: 12px;">エディション比較へ</a>
+      </div>
+    </div>
+  </section>
+</Base>
