@@ -5,6 +5,7 @@ description: GA4にもGSCにも出てこないAIボットのアクセスをど�
 date: 2026-08-08
 lang: ja
 path: /ja/blog/ai-bot-measurement
+altPath: /blog/ai-bot-measurement
 ---
 
 ## GA4にもGSCにも出てこないアクセスがある

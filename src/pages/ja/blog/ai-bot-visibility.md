@@ -5,6 +5,7 @@ description: GA4にAIボットのアクセスが映らないのはなぜか、�
 date: 2026-07-01
 lang: ja
 path: /ja/blog/ai-bot-visibility
+altPath: /blog/ai-bot-visibility
 ---
 
 ## 最近、検索でクリックされなくなった、という話をよく目にする

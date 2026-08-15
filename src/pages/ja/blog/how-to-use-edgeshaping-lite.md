@@ -5,6 +5,7 @@ description: WordPressでAIボットのアクセスを可視化できるEdgeShap
 date: 2026-07-08
 lang: ja
 path: /ja/blog/how-to-use-edgeshaping-lite
+altPath: /blog/how-to-use-edgeshaping-lite
 ---
 
 ChatGPT、Claude、Perplexity、Gemini など、AIがWeb上の情報を参照する機会が増えています。
