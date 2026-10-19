@@ -10,3 +10,6 @@
 /policies/legal-notice                     https://mareinterno.com/shop/commercial-disclosure/  301
 /policies/contact-information              https://mareinterno.com/inquiry       301
 /policies/*                                https://mareinterno.com/  301
+
+# Old EN article URL (file was named .en.md)
+/blog/how-to-read-ai-bot-access.en  /blog/how-to-read-ai-bot-access  301
