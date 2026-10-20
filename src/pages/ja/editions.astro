@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-const STORE = 'https://mareinterno.com/blog/product/edgeshaping-log-insight-wp/';
+const STORE = 'https://mareinterno.com/blog/product/edgeshaping-log-insight-wp/?utm_source=edgeshap.ing&utm_medium=referral&utm_campaign=editions';
 const INQUIRY = 'https://mareinterno.com/inquiry';
 ---
 <Base
@@ -13,7 +13,7 @@ const INQUIRY = 'https://mareinterno.com/inquiry';
   <section class="deep" style="padding-top: 160px;">
     <div class="wrap">
       <span class="eyebrow" style="color: var(--ai);">Editions</span>
-      <h2 style="color: var(--foam);">観測の深さで選ぶ。</h2>
+      <h1 class="page-title" style="color: var(--foam);">観測の深さで選ぶ。</h1>
       <p class="lead">どのエディションも役割は同じ — AIボットの観測です。違うのは、どのレイヤーで、どこまで見るか。</p>
     </div>
   </section>
@@ -29,7 +29,7 @@ const INQUIRY = 'https://mareinterno.com/inquiry';
             まず「来ているのか」を確かめる最初の一歩。
           </p>
           <p class="price">¥0</p>
-          <a class="btn btn-ghost" href="https://ja.wordpress.org/plugins/edgeshaping-lite/" rel="noopener">WordPress.orgで入手</a>
+          <a class="btn btn-ghost" href="https://ja.wordpress.org/plugins/edgeshaping-lite/" rel="noopener" data-track="lite_click" data-placement="editions_card">WordPress.orgで入手</a>
         </div>
         <div class="card reveal featured">
           <span class="tag">有償 / WordPress</span>
@@ -41,7 +41,7 @@ const INQUIRY = 'https://mareinterno.com/inquiry';
             辞書更新・不具合修正は次期年度版の公開まで無償提供。
           </p>
           <p class="price">¥10,780 <span>税込・買い切り</span></p>
-          <a class="btn btn-ai" href={STORE} rel="noopener">購入する（mareinterno.com）</a>
+          <a class="btn btn-ai" href={STORE} rel="noopener" data-track="store_click" data-placement="editions_card">購入する（mareinterno.com）</a>
         </div>
         <div class="card reveal">
           <span class="tag">CDN</span>
@@ -51,13 +51,45 @@ const INQUIRY = 'https://mareinterno.com/inquiry';
             WordPress以外のサイトにも。月額保守は¥55,000（税込）。
           </p>
           <p class="price">¥550,000 <span>税込・初期コンサル込み</span></p>
-          <a class="btn btn-ghost" href={INQUIRY} rel="noopener">相談する</a>
+          <a class="btn btn-ghost" href={INQUIRY} rel="noopener" data-track="pro_inquiry_click" data-placement="editions_card">相談する</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="shallow-2">
+    <div class="wrap" style="max-width: 900px;">
+      <span class="eyebrow reveal">Compare</span>
+      <h2 class="reveal">無料版と有償版の違い</h2>
+      <p class="reveal" style="color: var(--ink-soft);">まずLiteで「来ているか」を確かめ、用途別の分析やデータ連携が必要になったら有償版へ。</p>
+      <div class="cmp-wrap reveal">
+        <table class="cmp">
+          <thead>
+            <tr><th scope="col">機能</th><th scope="col">Lite<br /><small>無料</small></th><th scope="col" class="hl">EdgeShaping<br /><small>¥10,780 買い切り</small></th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">AIボットの検出・アクセスログ</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">ダッシュボード・期間フィルター</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">AHTGマトリクス（AI×人間PV）</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">AHQGマトリクス（AI×検索クリック、GSC連携）</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">CSVエクスポート</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row"><a href="/ja/blog/connect-edgeshaping-to-claude-mcp">Claude連携（MCP）</a></th><td>日別集計</td><td class="hl">日別集計＋用途分類</td></tr>
+            <tr><th scope="row">用途分類分析（学習／検索・RAG／ユーザートリガー）</th><td>—</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">アクセスログ詳細（ボット別×パス別）</th><td>—</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">REST APIでのデータ取り出し</th><td>—</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">ログの保存上限</th><td>20,000行</td><td class="hl">大幅に拡大</td></tr>
+            <tr><th scope="row">料金</th><td>¥0</td><td class="hl">¥10,780（税込・買い切り）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cta-row reveal">
+        <a class="btn btn-ai" href={STORE} rel="noopener" data-track="store_click" data-placement="editions_compare">有償版を購入する</a>
+        <a class="btn btn-ghost" href="https://ja.wordpress.org/plugins/edgeshaping-lite/" rel="noopener" data-track="lite_click" data-placement="editions_compare">まず無料版を試す</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="shallow">
     <div class="wrap" style="max-width: 760px;">
       <span class="eyebrow reveal">FAQ</span>
       <h2 class="reveal">よくある質問</h2>
@@ -89,4 +121,12 @@ const INQUIRY = 'https://mareinterno.com/inquiry';
   .faq details { border-bottom: 1px solid var(--line-light); padding: 18px 0; }
   .faq summary { cursor: pointer; font-weight: 700; }
   .faq p { margin-top: 10px; color: var(--ink-soft); }
+  .cmp-wrap { overflow-x: auto; margin: 28px 0; -webkit-overflow-scrolling: touch; }
+  .cmp { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 15px; background: var(--surface); }
+  .cmp th, .cmp td { border-bottom: 1px solid var(--line-light); padding: 12px 10px; text-align: center; vertical-align: middle; }
+  .cmp thead th { font-size: 14px; }
+  .cmp small { font-weight: 400; color: var(--ink-soft); }
+  .cmp tbody th { text-align: left; font-weight: 500; }
+  .cmp .hl { background: #e9f7f4; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
 </style>

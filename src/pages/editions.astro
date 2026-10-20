@@ -13,7 +13,7 @@ const INQUIRY = 'https://mareinterno.com/contact-en/';
   <section class="deep" style="padding-top: 160px;">
     <div class="wrap">
       <span class="eyebrow" style="color: var(--ai);">Editions</span>
-      <h2 style="color: var(--foam);">Choose your depth of observation.</h2>
+      <h1 class="page-title" style="color: var(--foam);">Choose your depth of observation.</h1>
       <p class="lead">Every edition does the same job — observing AI bots. What differs is the layer it watches from, and how far it sees.</p>
     </div>
   </section>
@@ -26,10 +26,10 @@ const INQUIRY = 'https://mareinterno.com/contact-en/';
           <h3>EdgeShaping Lite</h3>
           <p style="min-height: 5.5em;">
             The free edition on WordPress.org: AI bot detection, access log, dashboard and the
-            AHTG matrix. The first step — finding out whether they're coming at all.
+            AHTG/AHQG matrices and CSV export. The first step — finding out whether they're coming at all.
           </p>
           <p class="price">Free</p>
-          <a class="btn btn-ghost" href="https://wordpress.org/plugins/edgeshaping-lite/" rel="noopener">Get it on WordPress.org</a>
+          <a class="btn btn-ghost" href="https://wordpress.org/plugins/edgeshaping-lite/" rel="noopener" data-track="lite_click" data-placement="editions_card">Get it on WordPress.org</a>
         </div>
         <div class="card reveal featured">
           <span class="tag">Paid / WordPress</span>
@@ -40,7 +40,7 @@ const INQUIRY = 'https://mareinterno.com/contact-en/';
             subscription. Dictionary and bug-fix updates are free until the next yearly version ships.
           </p>
           <p class="price">$99 <span>one-time</span></p>
-          <a class="btn btn-ai" href={STORE} rel="noopener">Purchase on Gumroad</a>
+          <a class="btn btn-ai" href={STORE} rel="noopener" data-track="store_click" data-placement="editions_card">Purchase on Gumroad</a>
         </div>
         <div class="card reveal">
           <span class="tag">CDN</span>
@@ -50,13 +50,45 @@ const INQUIRY = 'https://mareinterno.com/contact-en/';
             lets reach your origin. Works beyond WordPress. Available on consultation.
           </p>
           <p class="price">On request</p>
-          <a class="btn btn-ghost" href={INQUIRY} rel="noopener">Talk to us</a>
+          <a class="btn btn-ghost" href={INQUIRY} rel="noopener" data-track="pro_inquiry_click" data-placement="editions_card">Talk to us</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="shallow-2">
+    <div class="wrap" style="max-width: 900px;">
+      <span class="eyebrow reveal">Compare</span>
+      <h2 class="reveal">Free vs. paid, side by side</h2>
+      <p class="reveal" style="color: var(--ink-soft);">Start with Lite to find out whether AI bots are coming at all. Move to the paid edition when you need purpose-level analysis or want to pull the data out.</p>
+      <div class="cmp-wrap reveal">
+        <table class="cmp">
+          <thead>
+            <tr><th scope="col">Feature</th><th scope="col">Lite<br /><small>Free</small></th><th scope="col" class="hl">EdgeShaping<br /><small>$99 one-time</small></th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">AI bot detection &amp; access log</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">Dashboard &amp; date filters</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">AHTG matrix (AI × human page views)</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">AHQG matrix (AI × search clicks, needs GSC)</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">CSV export</th><td>✓</td><td class="hl">✓</td></tr>
+            <tr><th scope="row"><a href="/blog/connect-edgeshaping-to-claude-mcp">Connect to Claude (MCP)</a></th><td>Daily totals</td><td class="hl">Daily totals + purpose categories</td></tr>
+            <tr><th scope="row">Purpose-category analysis (training / search &amp; RAG / user-triggered)</th><td>—</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">Detailed access log (bot × path)</th><td>—</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">REST API data export</th><td>—</td><td class="hl">✓</td></tr>
+            <tr><th scope="row">Log storage cap</th><td>20,000 rows</td><td class="hl">Much larger</td></tr>
+            <tr><th scope="row">Price</th><td>Free</td><td class="hl">$99 one-time</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cta-row reveal">
+        <a class="btn btn-ai" href={STORE} rel="noopener" data-track="store_click" data-placement="editions_compare">Buy the paid edition</a>
+        <a class="btn btn-ghost" href="https://wordpress.org/plugins/edgeshaping-lite/" rel="noopener" data-track="lite_click" data-placement="editions_compare">Try Lite first</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="shallow">
     <div class="wrap" style="max-width: 760px;">
       <span class="eyebrow reveal">FAQ</span>
       <h2 class="reveal">Common questions</h2>
@@ -88,4 +120,12 @@ const INQUIRY = 'https://mareinterno.com/contact-en/';
   .faq details { border-bottom: 1px solid var(--line-light); padding: 18px 0; }
   .faq summary { cursor: pointer; font-weight: 700; }
   .faq p { margin-top: 10px; color: var(--ink-soft); }
+  .cmp-wrap { overflow-x: auto; margin: 28px 0; -webkit-overflow-scrolling: touch; }
+  .cmp { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 15px; background: var(--surface); }
+  .cmp th, .cmp td { border-bottom: 1px solid var(--line-light); padding: 12px 10px; text-align: center; vertical-align: middle; }
+  .cmp thead th { font-size: 14px; }
+  .cmp small { font-weight: 400; color: var(--ink-soft); }
+  .cmp tbody th { text-align: left; font-weight: 500; }
+  .cmp .hl { background: #e9f7f4; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
 </style>

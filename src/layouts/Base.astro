@@ -10,8 +10,9 @@ interface Props {
   /** path of the counterpart page in the other language, if it exists */
   altPath?: string;
   path: string;
+  noindex?: boolean;
 }
-const { title, description, lang, altPath, path } = Astro.props;
+const { title, description, lang, altPath, path, noindex } = Astro.props;
 const site = 'https://edgeshap.ing';
 ---
 <!doctype html>
@@ -21,7 +22,7 @@ const site = 'https://edgeshap.ing';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={site + path} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={site + path} />}
     {altPath && <link rel="alternate" hreflang={lang === 'en' ? 'ja' : 'en'} href={site + altPath} />}
     {altPath && <link rel="alternate" hreflang={lang} href={site + path} />}
     <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48" />
@@ -46,6 +47,14 @@ const site = 'https://edgeshap.ing';
       import Lenis from 'lenis';
       import { gsap } from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      // Button clicks -> Zaraz custom events (no-op when Zaraz isn't loaded)
+      document.addEventListener('click', (e) => {
+        const el = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-track]');
+        const zaraz = (window as any).zaraz;
+        if (!el || typeof zaraz?.track !== 'function') return;
+        zaraz.track(el.dataset.track, { placement: el.dataset.placement, link_url: el.href, page_path: location.pathname });
+      });
 
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduced) {

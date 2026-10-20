@@ -57,7 +57,7 @@ AIの回答に自社がどう引用されたかを追う調査(出力側の観�
 - **EdgeShaping Lite(無料)** — WordPress.orgから1分でインストール。どのAIボットが、いつ、どのページを読んだかが管理画面に並ぶ。まずはこれで自分のサイトの現状を見てほしい。
   → [WordPress.orgでLiteをインストール](https://ja.wordpress.org/plugins/edgeshaping-lite/)
 - **EdgeShaping(有償版)** — カテゴリ別分析、アクセスログ詳細、REST APIによるデータ取り出しまで。本記事で述べた「AI利用比率」の時系列比較を実運用に載せるならこちら。
-  → [有償版の詳細を見る](https://mareinterno.com/blog/product/edgeshaping-log-insight-wp/)
+  → [有償版の詳細を見る](https://mareinterno.com/blog/product/edgeshaping-log-insight-wp/?utm_source=edgeshap.ing&utm_medium=referral&utm_campaign=blog)
 
 重要なのはツールの選択ではなく、記録を始める時期だ。生ログは後から遡って取得できない。今日観測を始めた人だけが、半年後に「変化」を語れる。
 

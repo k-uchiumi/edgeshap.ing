@@ -44,7 +44,7 @@ const cta = lang === 'ja'
         <h2>{cta.title}</h2>
         <p>{cta.body}</p>
         <div class="cta-btns">
-          <a class="btn btn-ai" href={cta.mainHref} rel="noopener">{cta.main}</a>
+          <a class="btn btn-ai" href={cta.mainHref} rel="noopener" data-track="lite_click" data-placement="article_cta">{cta.main}</a>
           <a class="btn btn-ghost" href={cta.subHref}>{cta.sub}</a>
         </div>
       </aside>
