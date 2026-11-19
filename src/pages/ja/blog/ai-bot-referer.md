@@ -5,6 +5,7 @@ description: OAI-SearchBotはリファラーを付けてサイトに来ます。
 date: 2026-11-19
 lang: ja
 path: /ja/blog/ai-bot-referer
+altPath: /blog/ai-bot-referer
 ---
 
 AIボットは、サイトの中だけを回っているわけではありません。他のサイトに載っている紹介記事のリンクを辿って、OAI-SearchBotが来ていました。リンク元は、個人のブログ、wiki系のサイト、コミュニティサイトなどです。
